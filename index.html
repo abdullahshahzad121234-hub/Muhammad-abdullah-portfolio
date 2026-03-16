@@ -406,6 +406,67 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
+    /* ─── Platform Slider ───────────────────────────────────────── */
+    #platforms { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 48px 0; overflow: hidden; }
+    .platforms-label { text-align: center; font-size: 0.8125rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 32px; }
+    .slider-track-wrap { overflow: hidden; position: relative; }
+    .slider-track-wrap::before,
+    .slider-track-wrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+    }
+    .slider-track-wrap::before { left: 0; background: linear-gradient(to right, var(--card), transparent); }
+    .slider-track-wrap::after  { right: 0; background: linear-gradient(to left, var(--card), transparent); }
+    .slider-track {
+      display: flex; gap: 40px; width: max-content;
+      animation: slide 22s linear infinite;
+    }
+    .slider-track:hover { animation-play-state: paused; }
+    @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .platform-pill {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 28px; border-radius: 999px;
+      background: var(--background); border: 1px solid var(--border);
+      white-space: nowrap;
+      font-size: 0.9375rem; font-weight: 600; color: var(--foreground);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .platform-pill:hover { border-color: var(--primary); box-shadow: 0 4px 16px rgba(79,70,229,0.12); transform: translateY(-2px); }
+    .platform-pill svg { flex-shrink: 0; }
+
+    /* ─── FAQ ────────────────────────────────────────────────────── */
+    #faq { background: var(--background); }
+    .faq-header { text-align: center; margin-bottom: 56px; }
+    .faq-sub { font-size: 1.0625rem; color: var(--muted); max-width: 520px; margin: 20px auto 0; line-height: 1.7; }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+    .faq-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .faq-item.open { border-color: var(--primary); box-shadow: 0 4px 20px rgba(79,70,229,0.1); }
+    .faq-question {
+      width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 24px 28px; background: none; border: none; cursor: pointer;
+      text-align: left; font-family: 'Inter', sans-serif;
+    }
+    .faq-question span { font-size: 1rem; font-weight: 600; color: var(--foreground); line-height: 1.4; }
+    .faq-icon {
+      flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
+      background: var(--secondary); color: var(--muted);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s, transform 0.3s;
+    }
+    .faq-item.open .faq-icon { background: var(--primary); color: #fff; transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.3s ease;
+      padding: 0 28px;
+    }
+    .faq-answer p { font-size: 0.9375rem; color: var(--muted); line-height: 1.75; padding-bottom: 24px; }
+    .faq-item.open .faq-answer { max-height: 400px; }
+
     /* ─── Footer ─────────────────────────────────────────────────── */
     footer { background: var(--background); border-top: 1px solid var(--border); padding: 48px 0; }
     .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 24px; }
@@ -522,6 +583,89 @@
           <circle cx="360" cy="160" r="6" fill="#4f46e5"/>
           <circle cx="240" cy="80" r="6" fill="#4f46e5"/>
         </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ PLATFORM SLIDER ══════════════════════ -->
+<section id="platforms">
+  <p class="platforms-label">Platforms &amp; Tools I Work With</p>
+  <div class="slider-track-wrap">
+    <div class="slider-track" id="sliderTrack">
+      <!-- Set 1 -->
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#4353ff"><path d="M3.6 15.6A5.4 5.4 0 019 21V9H3.6a5.4 5.4 0 000 6.6zM9 3.6A5.4 5.4 0 003.6 9H9V3.6zM9 9h5.4A5.4 5.4 0 009 3.6V9zm5.4 0A5.4 5.4 0 0020.4 9H14.4v.001zM14.4 9v5.4a5.4 5.4 0 005.4-5.4h-5.4zM14.4 14.4V21a5.4 5.4 0 000-6.6z"/></svg>
+        Webflow
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#f24e1e"><path d="M8 24c2.2 0 4-1.8 4-4v-4H8a4 4 0 000 8zM4 12a4 4 0 004 4h4v-8H8a4 4 0 00-4 4zM4 4a4 4 0 004 4h4V0H8a4 4 0 00-4 4zM12 0v8h4a4 4 0 000-8h-4zM16 8h-4v8h4a4 4 0 000-8z"/></svg>
+        Figma
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#181717"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#f26207"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm5.68 7.56l-1.84 8.69c-.14.62-.5.77-.99.48l-2.76-2.03-1.33 1.28c-.15.14-.27.27-.54.27l.19-2.77 5-4.52c.22-.19-.05-.3-.34-.11L6.79 13.34 4.06 12.5c-.62-.19-.63-.62.13-.92l11.18-4.31c.52-.19.97.12.81.92-.01-.63z"/></svg>
+        Telegram
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#F26207"><circle cx="12" cy="12" r="12"/><path d="M8 7h8v2H8zm0 4h8v2H8zm0 4h5v2H8z" fill="#fff"/></svg>
+        Replit
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#0ea5e9"><path d="M13.5 1.5a1.5 1.5 0 00-3 0V11H1.5a1.5 1.5 0 000 3H10.5v9.5a1.5 1.5 0 003 0V14H22.5a1.5 1.5 0 000-3H13.5V1.5z"/></svg>
+        Tailwind CSS
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#61dafb"><circle cx="12" cy="12" r="2.5"/><ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#61dafb" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#61dafb" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#61dafb" stroke-width="1.5" transform="rotate(120 12 12)"/></svg>
+        React
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#e34c26"><path d="M1.5 0L3.5 21.5 12 24l8.5-2.5L22.5 0zM18 7H8l.25 2.5H17.5l-.75 7.5L12 18.5l-4.75-1.5-.25-3H9.5l.25 1.75 2.25.75 2.25-.75.25-3H7L6.5 7H18z"/></svg>
+        HTML / CSS
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#f7df1e"><rect width="24" height="24" rx="3" fill="#f7df1e"/><path d="M6 18.5c.6 1 1.4 1.7 2.8 1.7 1.2 0 2-.6 2-1.4 0-1-.8-1.3-2-1.9l-.7-.3c-2-.85-3.3-1.9-3.3-4.15C4.8 10.3 6.4 9 8.7 9c1.6 0 2.7.55 3.5 2l-1.9 1.2c-.4-.75-1-.85-1.6-.85-.75 0-1.2.47-1.2 1.05 0 .73.45 1.03 1.5 1.47l.7.3c2.3 1 3.65 2 3.65 4.3 0 2.45-1.9 3.8-4.5 3.8-2.5 0-4.1-1.2-4.9-2.77zm9.5.2c.7 1.2 1.6 2.1 3.3 2.1 1.4 0 2.3-.7 2.3-1.65 0-1.14-.9-1.54-2.4-2.2l-.85-.36c-2.4-1.02-4-2.06-4-4.45C13.85 9.9 15.6 9 17.6 9c1.7 0 2.9.6 3.7 2.15l-2 1.27c-.45-.8-.93-1.1-1.7-1.1-.77 0-1.26.48-1.26 1.1 0 .78.5 1.1 1.6 1.55l.85.36c2.8 1.2 4.4 2.2 4.4 4.7 0 2.67-2.1 4-4.9 4-2.74 0-4.5-1.3-5.36-3.02z"/></svg>
+        JavaScript
+      </div>
+      <!-- Set 2 — exact duplicate for infinite loop -->
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#4353ff"><path d="M3.6 15.6A5.4 5.4 0 019 21V9H3.6a5.4 5.4 0 000 6.6zM9 3.6A5.4 5.4 0 003.6 9H9V3.6zM9 9h5.4A5.4 5.4 0 009 3.6V9zm5.4 0A5.4 5.4 0 0020.4 9H14.4v.001zM14.4 9v5.4a5.4 5.4 0 005.4-5.4h-5.4zM14.4 14.4V21a5.4 5.4 0 000-6.6z"/></svg>
+        Webflow
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#f24e1e"><path d="M8 24c2.2 0 4-1.8 4-4v-4H8a4 4 0 000 8zM4 12a4 4 0 004 4h4v-8H8a4 4 0 00-4 4zM4 4a4 4 0 004 4h4V0H8a4 4 0 00-4 4zM12 0v8h4a4 4 0 000-8h-4zM16 8h-4v8h4a4 4 0 000-8z"/></svg>
+        Figma
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#181717"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#f26207"><path d="M12 0C5.38 0 0 5.38 0 12s5.38 12 12 12 12-5.38 12-12S18.62 0 12 0zm5.68 7.56l-1.84 8.69c-.14.62-.5.77-.99.48l-2.76-2.03-1.33 1.28c-.15.14-.27.27-.54.27l.19-2.77 5-4.52c.22-.19-.05-.3-.34-.11L6.79 13.34 4.06 12.5c-.62-.19-.63-.62.13-.92l11.18-4.31c.52-.19.97.12.81.92-.01-.63z"/></svg>
+        Telegram
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#F26207"><circle cx="12" cy="12" r="12"/><path d="M8 7h8v2H8zm0 4h8v2H8zm0 4h5v2H8z" fill="#fff"/></svg>
+        Replit
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#0ea5e9"><path d="M13.5 1.5a1.5 1.5 0 00-3 0V11H1.5a1.5 1.5 0 000 3H10.5v9.5a1.5 1.5 0 003 0V14H22.5a1.5 1.5 0 000-3H13.5V1.5z"/></svg>
+        Tailwind CSS
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#61dafb"><circle cx="12" cy="12" r="2.5"/><ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#61dafb" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#61dafb" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#61dafb" stroke-width="1.5" transform="rotate(120 12 12)"/></svg>
+        React
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#e34c26"><path d="M1.5 0L3.5 21.5 12 24l8.5-2.5L22.5 0zM18 7H8l.25 2.5H17.5l-.75 7.5L12 18.5l-4.75-1.5-.25-3H9.5l.25 1.75 2.25.75 2.25-.75.25-3H7L6.5 7H18z"/></svg>
+        HTML / CSS
+      </div>
+      <div class="platform-pill">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#f7df1e"><rect width="24" height="24" rx="3" fill="#f7df1e"/><path d="M6 18.5c.6 1 1.4 1.7 2.8 1.7 1.2 0 2-.6 2-1.4 0-1-.8-1.3-2-1.9l-.7-.3c-2-.85-3.3-1.9-3.3-4.15C4.8 10.3 6.4 9 8.7 9c1.6 0 2.7.55 3.5 2l-1.9 1.2c-.4-.75-1-.85-1.6-.85-.75 0-1.2.47-1.2 1.05 0 .73.45 1.03 1.5 1.47l.7.3c2.3 1 3.65 2 3.65 4.3 0 2.45-1.9 3.8-4.5 3.8-2.5 0-4.1-1.2-4.9-2.77zm9.5.2c.7 1.2 1.6 2.1 3.3 2.1 1.4 0 2.3-.7 2.3-1.65 0-1.14-.9-1.54-2.4-2.2l-.85-.36c-2.4-1.02-4-2.06-4-4.45C13.85 9.9 15.6 9 17.6 9c1.7 0 2.9.6 3.7 2.15l-2 1.27c-.45-.8-.93-1.1-1.7-1.1-.77 0-1.26.48-1.26 1.1 0 .78.5 1.1 1.6 1.55l.85.36c2.8 1.2 4.4 2.2 4.4 4.7 0 2.67-2.1 4-4.9 4-2.74 0-4.5-1.3-5.36-3.02z"/></svg>
+        JavaScript
       </div>
     </div>
   </div>
@@ -778,6 +922,76 @@
   </div>
 </section>
 
+<!-- ══════════════════════ FAQ ══════════════════════ -->
+<section id="faq" class="section-py">
+  <div class="container">
+    <div class="faq-header fade-in">
+      <h2 class="section-heading">Frequently Asked Questions</h2>
+      <div class="heading-accent center"></div>
+      <p class="faq-sub">Answers to the most common questions I get from clients before we start working together.</p>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item fade-in" style="transition-delay:0.1s">
+        <button class="faq-question" aria-expanded="false">
+          <span>How long does it typically take to build a website?</span>
+          <div class="faq-icon">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+        </button>
+        <div class="faq-answer">
+          <p>It depends on the scope of the project. A focused landing page can be ready in 1–2 weeks, while a full multi-page website typically takes 3–6 weeks. During our first conversation I'll give you a clear timeline specific to your project so there are no surprises.</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-in" style="transition-delay:0.2s">
+        <button class="faq-question" aria-expanded="false">
+          <span>Why Webflow instead of WordPress or another platform?</span>
+          <div class="faq-icon">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+        </button>
+        <div class="faq-answer">
+          <p>Webflow gives you a fast, secure, and visually polished website without the plugin bloat or security vulnerabilities that come with WordPress. It also lets you or your team edit content easily after launch — no developer needed for day-to-day updates. That said, I work with whatever platform best fits your specific goals.</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-in" style="transition-delay:0.3s">
+        <button class="faq-question" aria-expanded="false">
+          <span>What information do you need to get started?</span>
+          <div class="faq-icon">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+        </button>
+        <div class="faq-answer">
+          <p>To kick things off I need a basic understanding of your business, your target audience, what you want visitors to do on the site, any branding assets you already have (logo, colors, fonts), and examples of websites you like. I'll guide you through a short brief to gather everything needed before I start designing.</p>
+        </div>
+      </div>
+
+      <div class="faq-item fade-in" style="transition-delay:0.4s">
+        <button class="faq-question" aria-expanded="false">
+          <span>Do you offer ongoing support after the website is launched?</span>
+          <div class="faq-icon">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+        </button>
+        <div class="faq-answer">
+          <p>Yes. Every project includes a post-launch support period for minor fixes and adjustments. For ongoing updates, performance monitoring, and continuous improvements, I offer monthly retainer packages. I also work with Interface Lab on larger, long-term projects that need a full team behind them.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════════════ CONTACT ══════════════════════ -->
 <section id="contact" class="section-py">
   <div class="container">
@@ -819,8 +1033,8 @@
       <div class="fade-in-left" style="transition-delay:0.2s">
         <div class="form-box">
           <div id="formWrap">
-            <h3>Start a Project</h3>
-            <p>Fill in the details below and I'll get back to you within 24–48 hours.</p>
+            <h3>Send a Message</h3>
+            <p>Fill in your details and I'll get back to you within 24–48 hours.</p>
             <form id="contactForm" novalidate>
               <div class="form-row">
                 <div class="form-group">
@@ -831,69 +1045,21 @@
                 <div class="form-group">
                   <label for="femail">Email Address <span class="req">*</span></label>
                   <input type="email" id="femail" placeholder="john@company.com" />
-                  <span class="field-error" id="emailErr">Please enter a valid email address.</span>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="fcompany">Company Name <span class="opt">(optional)</span></label>
-                  <input type="text" id="fcompany" placeholder="Acme Inc." />
-                </div>
-                <div class="form-group">
-                  <label for="fwebsite">Website URL <span class="opt">(optional)</span></label>
-                  <input type="url" id="fwebsite" placeholder="https://yourwebsite.com" />
+                  <span class="field-error" id="emailErr">Please enter a valid email.</span>
                 </div>
               </div>
               <div class="form-group">
-                <label for="ftype">Project Type <span class="req">*</span></label>
-                <div class="select-wrap">
-                  <select id="ftype">
-                    <option value="">Select a project type...</option>
-                    <option>New Website</option>
-                    <option>Website Redesign</option>
-                    <option>Landing Page</option>
-                    <option>Webflow Development</option>
-                    <option>Website Optimization</option>
-                    <option>Not Sure Yet</option>
-                  </select>
-                </div>
-                <span class="field-error" id="typeErr">Please select a project type.</span>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="fbudget">Budget Range <span class="req">*</span></label>
-                  <div class="select-wrap">
-                    <select id="fbudget">
-                      <option value="">Select budget...</option>
-                      <option>$500 – $1,000</option>
-                      <option>$1,000 – $3,000</option>
-                      <option>$3,000 – $5,000</option>
-                      <option>$5,000+</option>
-                    </select>
-                  </div>
-                  <span class="field-error" id="budgetErr">Please select a budget range.</span>
-                </div>
-                <div class="form-group">
-                  <label for="ftimeline">Project Timeline <span class="req">*</span></label>
-                  <div class="select-wrap">
-                    <select id="ftimeline">
-                      <option value="">Select timeline...</option>
-                      <option>Urgent</option>
-                      <option>2–4 Weeks</option>
-                      <option>1–2 Months</option>
-                      <option>Flexible</option>
-                    </select>
-                  </div>
-                  <span class="field-error" id="timelineErr">Please select a timeline.</span>
-                </div>
+                <label for="fphone">Phone Number <span class="req">*</span></label>
+                <input type="tel" id="fphone" placeholder="+1 (555) 000-0000" />
+                <span class="field-error" id="phoneErr">Please enter a valid phone number.</span>
               </div>
               <div class="form-group">
-                <label for="fdetails">Project Details <span class="req">*</span></label>
-                <textarea id="fdetails" rows="4" placeholder="Describe your project goals, target audience, and any specific features you need..."></textarea>
-                <span class="field-error" id="detailsErr">Please describe your project (at least 10 characters).</span>
+                <label for="fmessage">Message <span class="req">*</span></label>
+                <textarea id="fmessage" rows="5" placeholder="Tell me about your project, goals, or any questions you have..."></textarea>
+                <span class="field-error" id="msgErr">Please write a message (at least 10 characters).</span>
               </div>
               <button type="submit" class="btn-submit" id="submitBtn">
-                <span id="btnText">Start My Project</span>
+                <span id="btnText">Send Message</span>
                 <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                   <line x1="22" y1="2" x2="11" y2="13"/>
                   <polygon points="22 2 15 22 11 13 2 9 22 2"/>
@@ -990,22 +1156,19 @@
   }
 
   function validate() {
-    const name     = document.getElementById('fname').value.trim();
-    const email    = document.getElementById('femail').value.trim();
-    const type     = document.getElementById('ftype').value;
-    const budget   = document.getElementById('fbudget').value;
-    const timeline = document.getElementById('ftimeline').value;
-    const details  = document.getElementById('fdetails').value.trim();
-    const emailOk  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const name    = document.getElementById('fname').value.trim();
+    const email   = document.getElementById('femail').value.trim();
+    const phone   = document.getElementById('fphone').value.trim();
+    const message = document.getElementById('fmessage').value.trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const phoneOk = phone.replace(/[\s\-\(\)\+]/g, '').length >= 6;
 
-    showErr('nameErr',    name.length < 2);
-    showErr('emailErr',   !emailOk);
-    showErr('typeErr',    !type);
-    showErr('budgetErr',  !budget);
-    showErr('timelineErr',!timeline);
-    showErr('detailsErr', details.length < 10);
+    showErr('nameErr',  name.length < 2);
+    showErr('emailErr', !emailOk);
+    showErr('phoneErr', !phoneOk);
+    showErr('msgErr',   message.length < 10);
 
-    return name.length >= 2 && emailOk && type && budget && timeline && details.length >= 10;
+    return name.length >= 2 && emailOk && phoneOk && message.length >= 10;
   }
 
   form.addEventListener('submit', async (e) => {
@@ -1020,25 +1183,17 @@
 
     await new Promise(r => setTimeout(r, 1000));
 
-    const name     = document.getElementById('fname').value.trim();
-    const email    = document.getElementById('femail').value.trim();
-    const company  = document.getElementById('fcompany').value.trim();
-    const website  = document.getElementById('fwebsite').value.trim();
-    const type     = document.getElementById('ftype').value;
-    const budget   = document.getElementById('fbudget').value;
-    const timeline = document.getElementById('ftimeline').value;
-    const details  = document.getElementById('fdetails').value.trim();
+    const name    = document.getElementById('fname').value.trim();
+    const email   = document.getElementById('femail').value.trim();
+    const phone   = document.getElementById('fphone').value.trim();
+    const message = document.getElementById('fmessage').value.trim();
 
-    const subject = encodeURIComponent('New Project Inquiry: ' + type);
+    const subject = encodeURIComponent('New Inquiry from ' + name);
     const body = encodeURIComponent(
-      'Full Name: ' + name + '\n' +
+      'Name: ' + name + '\n' +
       'Email: ' + email + '\n' +
-      (company ? 'Company: ' + company + '\n' : '') +
-      (website ? 'Website: ' + website + '\n' : '') +
-      '\nProject Type: ' + type +
-      '\nBudget Range: ' + budget +
-      '\nTimeline: ' + timeline +
-      '\n\nProject Details:\n' + details
+      'Phone: ' + phone + '\n\n' +
+      'Message:\n' + message
     );
 
     window.location.href = 'mailto:abdullah@interfacelab.pro?subject=' + subject + '&body=' + body;
@@ -1046,7 +1201,7 @@
     form.reset();
     submitBtn.disabled = false;
     spinner.remove();
-    btnText.textContent = 'Start My Project';
+    btnText.textContent = 'Send Message';
     formWrap.style.display = 'none';
     formSuccess.classList.add('show');
   });
@@ -1054,6 +1209,17 @@
   resetBtn.addEventListener('click', () => {
     formSuccess.classList.remove('show');
     formWrap.style.display = '';
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+      btn.setAttribute('aria-expanded', !isOpen);
+    });
   });
 </script>
 </body>
